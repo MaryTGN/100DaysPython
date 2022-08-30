@@ -4,37 +4,36 @@ direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
 text = input("Type your message:\n").lower()
 shift = int(input("Type the shift number:\n"))
 
-def encrypt(plain_text, shift_amount):
-  cipher_text = ""
+#TODO-1: Combine the encrypt() and decrypt() functions into a single function called caesar(). 
+
+def ceasar(plain_text, shift_amount, direction):
+  text = ""
   for letter in plain_text:
     position = alphabet.index(letter)
-    new_position = position + shift_amount
-    cipher_text += alphabet[new_position]
-  print(f"The encoded text is {cipher_text}")
-  
-
-#TODO-1: Create a different function called 'decrypt' that takes the 'text' and 'shift' as inputs.
-def decrypt(cipher_text, shift_amount):
-  plain_text = ""
-  for letter in cipher_text:
-    position = alphabet.index(letter)
-    new_position = position - shift_amount
-    new_letter = alphabet[new_position]
-    plain_text += new_letter
-  print(f"The decoded text is {plain_text}")
+    if direction == "encode":
+      new_position = position + shift_amount
+    elif direction == "decode":
+      new_position = position - shift_amount
+    text += alphabet[new_position]
+  if direction == "encode":
+    print(f"The encoded text is {text}")
+  elif direction == "decode":
+    print(f"The decoded text is {text}")
     
 
-  #TODO-2: Inside the 'decrypt' function, shift each letter of the 'text' *backwards* in the alphabet by the shift amount and print the decrypted text.  
-  #e.g. 
-  #cipher_text = "mjqqt"
-  #shift = 5
-  #plain_text = "hello"
-  #print output: "The decoded text is hello"
 
+# def decrypt(cipher_text, shift_amount):
+#   plain_text = ""
+#   for letter in cipher_text:
+#     position = alphabet.index(letter)
+#     new_position = position - shift_amount
+#     plain_text += alphabet[new_position]
+#   print(f"The decoded text is {plain_text}")
 
-#TODO-3: Check if the user wanted to encrypt or decrypt the message by checking the 'direction' variable. Then call the correct function based on that 'drection' variable. You should be able to test the code to encrypt *AND* decrypt a message.
-if direction == "encode":
-  encrypt(plain_text = text, shift_amount = shift)
-if direction == "decode":
-  decrypt(cipher_text = text, shift_amount = shift)
+# if direction == "encode":
+#   encrypt(plain_text=text, shift_amount=shift)
+# elif direction == "decode":
+#   decrypt(cipher_text=text, shift_amount=shift)
 
+#TODO-2: Call the caesar() function, passing over the 'text', 'shift' and 'direction' values.
+ceasar(plain_text = text, shift_amount = shift, direction = direction)
